@@ -9,7 +9,9 @@ struct stack {
 };
 
 // intialize the stack
-void insti_stack(struct stack *s) { s->top = -1; }
+void insti_stack(struct stack *s) { 
+    s->top = -1;
+}
 
 // check if the stack is full
 int full(struct stack *s) {
