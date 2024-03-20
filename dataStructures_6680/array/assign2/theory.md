@@ -1,0 +1,2 @@
+### Explain the term arrays as a linear data structure.
+Arrays are linear data structures that store elements in contiguous memory locations. They allow random access to elements, which means any element can be accessed directly if the index is known. Arrays are characterized by their fixed size, which is decided at the time of array declaration and cannot be altered during runtime. Elements in an array are usually of the same data type.
