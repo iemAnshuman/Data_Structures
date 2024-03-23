@@ -1,1 +1,1 @@
-1. !(Asymptotics notation)[https://github.com/iemAnshuman/Data_Structures/blob/485b116ed0cfea84fb8c2905a61c68de8b9a71c6/mit_6.006/sumsAndAsymptotics.md]
+1. (Asymptotic Notation)[https://github.com/iemAnshuman/Data_Structures/blob/829cd9695880fad3a1e5da8306d2ae791477f9b5/mit_6.006/README.md]
