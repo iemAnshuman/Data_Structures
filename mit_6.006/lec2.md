@@ -20,7 +20,7 @@ focusing on what operations to do rather than how they are implemented.
 <p>Formality: Algorithms can be described in a completely formal mathematical language or in an informal way that just outlines the steps. Pseudocode falls somewhere in between, being less formal than code but more structured than plain language or pure mathematical notation.</p>
 <p>Purpose: The purpose of pseudocode is to bridge the gap between an algorithm's theoretical design and its practical implementation. It makes it easier to understand and communicate the algorithm without getting bogged down by the syntax of real code.</p>
 
-##### Note: The definition of terms like Functions, Function Module, Procedure, etc vaires from one language to another.
+#### Note: The definition of terms like Functions, Function Module, Procedure, etc vaires from one language to another.
 5. Functions and Function Module:
 <p>"Function" is your go-to for specific, often singular tasks, a "function module" in SAP is your more sophisticated tool, capable of carrying out a series of related operations and offering more flexibility and integration with the larger system.</p>
 <p>
@@ -31,7 +31,7 @@ A "function module," on the other hand, is like a multi-tool or a Swiss Army kni
 7. Procedure: (Pascal) Procedure is the set of instructions which may or may not involve returning a value
 
 8. Instructions and Commands:-
-<p>Key Differences
-Level of Abstraction: Instructions operate at a lower level, often directly affecting the hardware, while commands operate at a higher level, instructing software or systems to perform tasks.
-Human Readability: Commands are generally more human-readable and are designed to be easier to understand and use, especially in command-line interfaces or scripts. Instructions, especially machine-level instructions, are encoded in a way that is meant for the computer's processor, not for human readability.
-Scope: An instruction is a single operation in the processor's language, while a command can encompass a broader action, potentially involving multiple steps or instructions under the hood.</p>
+<p>Key Differences</p>
+<p>Level of Abstraction: Instructions operate at a lower level, often directly affecting the hardware, while commands operate at a higher level, instructing software or systems to perform tasks.</p>
+<p>Human Readability: Commands are generally more human-readable and are designed to be easier to understand and use, especially in command-line interfaces or scripts. Instructions, especially machine-level instructions, are encoded in a way that is meant for the computer's processor, not for human readability.</p>
+<p>Scope: An instruction is a single operation in the processor's language, while a command can encompass a broader action, potentially involving multiple steps or instructions under the hood.</p>
