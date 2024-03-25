@@ -1,7 +1,9 @@
 # Modals of Computaion and Document Distance
 
 ### Terms: 
-1. Algorithm: computation procedure for solving a problem.
+1. Algorithm: An algorithm is a step-by-step procedure or a set of rules designed to perform a specific task or solve a specific problem
+<br>
+computation procedure for solving a problem.
 Or mathematical abstraction of computer program 
 
 2. Abstraction: principle of hiding complex details to simplify problem solving, 
