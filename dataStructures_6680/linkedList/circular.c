@@ -8,39 +8,34 @@ struct Node {
 
 void insertFront(struct Node** head, int ndata) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
-    struct Node* temp = *head;
     newNode->data = ndata;
 
     if (*head == NULL) {
-        newNode->next = newNode; // Point to itself, making it circular
+        newNode->next = newNode;
     } else {
-        // Traverse until the last node
+        struct Node* temp = *head;
         while (temp->next != *head) {
             temp = temp->next;
         }
-        temp->next = newNode; // Link the last node to the new node
-        newNode->next = *head; // Link the new node to the head
+        temp->next = newNode;
+        newNode->next = *head;
     }
-    *head = newNode; // Update the head to the new node
+    *head = newNode;
 }
 
 void insertPos(struct Node** head, int ndata, int pos) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = ndata;
-    if (*head == NULL) {
-        newNode->next = newNode; // Circular link to itself
+
+    if (*head == NULL || pos == 0) {
+        newNode->next = newNode;
         *head = newNode;
-    } else if (pos == 0) {
-        insertFront(head, ndata);
-        return;
     } else {
         struct Node* temp = *head;
         for (int i = 0; i < pos - 1; i++) {
             temp = temp->next;
-            if (temp == *head) { // If we reach the head, the position is beyond list length
-                printf("Position exceeds the size of the list.\n");
-                free(newNode);
-                return;
+            if (temp->next == *head) {
+                break; // If we've circled back to the head, stop
             }
         }
         newNode->next = temp->next;
@@ -51,36 +46,39 @@ void insertPos(struct Node** head, int ndata, int pos) {
 void deletePos(struct Node** head, int pos) {
     if (*head == NULL) return;
 
-    struct Node* temp = *head, *prev = NULL;
+    struct Node* temp = *head;
     if (pos == 0) {
-        // If the list has only one node
-        if (temp->next == *head) {
-            free(temp);
+        if ((*head)->next == *head) {
+            free(*head);
             *head = NULL;
         } else {
-            while (temp->next != *head) { // Find the last node
-                temp = temp->next;
+            struct Node* last = *head;
+            while (last->next != *head) {
+                last = last->next;
             }
-            temp->next = (*head)->next; // Link last node to second node
-            free(*head);
-            *head = temp->next; // Update head
+            *head = (*head)->next;
+            last->next = *head;
+            free(temp);
         }
     } else {
+        struct Node* prev = NULL;
         for (int i = 0; i < pos; i++) {
             prev = temp;
             temp = temp->next;
-            if (temp == *head) { // Position is out of bounds
-                printf("Position exceeds the size of the list.\n");
-                return;
-            }
+            if (temp == *head) break; // Stop if we've circled back to the head
         }
-        prev->next = temp->next;
-        free(temp);
+        if (temp != *head) {
+            prev->next = temp->next;
+            free(temp);
+        }
     }
 }
 
 void printList(struct Node* head) {
-    if (head == NULL) return;
+    if (head == NULL) {
+        printf("List is empty.\n");
+        return;
+    }
 
     struct Node* temp = head;
     do {
@@ -92,30 +90,51 @@ void printList(struct Node* head) {
 
 int main() {
     struct Node* head = NULL;
+    int choice, data, pos;
 
-    int n;
-    printf("Enter number of elements: ");
-    scanf("%d", &n);
-    for (int i = 0; i < n; i++) {
-        int temp;
-        printf("Enter num: ");
-        scanf("%d", &temp);
-        insertFront(&head, temp);
+    while (1) {
+        printf("\nMenu:\n");
+        printf("1. Insert at front\n");
+        printf("2. Insert at position\n");
+        printf("3. Delete at position\n");
+        printf("4. Print list\n");
+        printf("5. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter data to insert at front: ");
+                scanf("%d", &data);
+                insertFront(&head, data);
+                break;
+            case 2:
+                printf("Enter data and position to insert: ");
+                scanf("%d %d", &data, &pos);
+                insertPos(&head, data, pos);
+                break;
+            case 3:
+                printf("Enter position to delete: ");
+                scanf("%d", &pos);
+                deletePos(&head, pos);
+                break;
+            case 4:
+                printList(head);
+                break;
+            case 5:
+                // Free memory before exiting
+                while (head != NULL) {
+                    struct Node* temp = head->next;
+                    if (head == temp) {
+                        free(head);
+                        break;
+                    }
+                    head->next = temp->next;
+                    free(temp);
+                }
+                return 0;
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
     }
-
-    printList(head);
-
-    deletePos(&head, 2); // Position starts at 0
-
-    printList(head);
-
-    insertPos(&head, 9999, 2);
-
-    printList(head);
-
-    // Since the replace operation is not typical for circular linked lists,
-    // we will skip it in this implementation. However, it can be implemented
-    // by a combination of delete and insert operations if necessary.
-
-    return 0;
 }

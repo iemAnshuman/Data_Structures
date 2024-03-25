@@ -25,20 +25,18 @@ void insertPos(struct Node** head, int ndata, int pos) {
         return;
     }
 
-    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     struct Node* temp = *head;
-    newNode->data = ndata;
-
-    for (int i = 0; temp != NULL && i < pos - 1; i++) {
+    for (int i = 0; i < pos - 1 && temp != NULL; i++) {
         temp = temp->next;
     }
 
     if (temp == NULL) {
         printf("Position exceeds the size of the doubly linked list.\n");
-        free(newNode);
         return;
     }
 
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = ndata;
     newNode->next = temp->next;
     newNode->prev = temp;
 
@@ -54,14 +52,14 @@ void deletePos(struct Node** head, int pos) {
     struct Node* temp = *head;
     if (pos == 0) {
         *head = temp->next;
-        if (temp->next != NULL) {
-            temp->next->prev = NULL;
+        if (*head != NULL) {
+            (*head)->prev = NULL;
         }
         free(temp);
         return;
     }
 
-    for (int i = 0; temp != NULL && i < pos; i++) {
+    for (int i = 0; i < pos && temp != NULL; i++) {
         temp = temp->next;
     }
 
@@ -80,36 +78,15 @@ void deletePos(struct Node** head, int pos) {
     free(temp);
 }
 
-void replace(struct Node** head, int ndata, int pos) {
-    deletePos(head, pos);
-    insertPos(head, ndata, pos);
-}
-
-struct Node* connect(struct Node** head1, struct Node** head2) {
-    if (*head1 == NULL) return *head2;
-    if (*head2 == NULL) return *head1;
-
-    struct Node* temp = *head1;
-    while (temp->next != NULL) {
-        temp = temp->next;
-    }
-    temp->next = *head2;
-    (*head2)->prev = temp;
-
-    return *head1;
-}
-
 void printList(struct Node* head) {
-    struct Node* last;
+    struct Node* last = NULL;
     printf("Forward: ");
     while (head != NULL) {
         printf("%d ", head->data);
         last = head;
         head = head->next;
     }
-    printf("\n");
-
-    printf("Backward: ");
+    printf("\nBackward: ");
     while (last != NULL) {
         printf("%d ", last->data);
         last = last->prev;
@@ -119,30 +96,43 @@ void printList(struct Node* head) {
 
 int main() {
     struct Node* head = NULL;
+    int choice, data, pos;
 
-    int n;
-    printf("Enter number of elements: ");
-    scanf("%d", &n);
-    for (int i = 0; i < n; i++) {
-        int temp;
-        printf("Enter num: ");
-        scanf("%d", &temp);
-        insertFront(&head, temp);
+    while (1) {
+        printf("\nMenu:\n");
+        printf("1. Insert at front\n");
+        printf("2. Insert at position\n");
+        printf("3. Delete at position\n");
+        printf("4. Print list\n");
+        printf("5. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1: // Insert at front
+                printf("Enter data to insert at front: ");
+                scanf("%d", &data);
+                insertFront(&head, data);
+                break;
+            case 2: // Insert at position
+                printf("Enter data and position to insert: ");
+                scanf("%d %d", &data, &pos);
+                insertPos(&head, data, pos);
+                break;
+            case 3: // Delete at position
+                printf("Enter position to delete: ");
+                scanf("%d", &pos);
+                deletePos(&head, pos);
+                break;
+            case 4: // Print list
+                printList(head);
+                break;
+            case 5: // Exit
+                return 0;
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
     }
-
-    printList(head);
-
-    deletePos(&head, 2); // Position starts at 0
-
-    printList(head);
-
-    insertPos(&head, 9999, 2);
-
-    printList(head);
-
-    replace(&head, -9999, 2);
-
-    printList(head);
 
     return 0;
 }
