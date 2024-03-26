@@ -1,15 +1,18 @@
 ### Explain the term arrays as a linear data structure.
 Arrays are linear data structures that store elements in contiguous memory locations. They allow random access to elements, which means any element can be accessed directly if the index is known. Arrays are characterized by their fixed size, which is decided at the time of array declaration and cannot be altered during runtime. Elements in an array are usually of the same data type.
+<br>
 
 ### What are the sparse matrices? Give an example.
 Sparse matrix is a matrix in which most of the elements are zero.
 When a sparse matrix is represented with a 2-dimensional array, we waste a lot of space to represent that matrix. For example, consider a matrix of size 100 X 100 containing only 10 non-zero elements.
+<br>
 
 ### How two-dimensional arrays are represented in memory? Also obtain the formula for calculating the address of any element stored in the array, in the case of column-major.
 Arrays are stored in linear(contiguous) fashion.
 Two-dimensional arrays are stored in memory either in row-major order (where the entire rows are stored one after another) or in column-major order (where the entire columns are stored one after another).
 In row major order, first row is stored first then second row is stored and so on.
 In column major order, first column is stored first then second column and so on.
+<br>
 
 ### Write an algorithm to count the common elements of two one-dimensional arrays.
 ALGORITHM:
@@ -21,6 +24,7 @@ Steps:
      a. Inner loop through each element (element2) in array2:
           b. If element1 is equal to element2, increment commonCount by 1. 
 3. Print or return the value of commonCount as the result.
+<br>
 
 ### Write a short note on any two:
 Static Memory Allocation: Memory is allocated at compile time. The size and location of memory are determined before the program starts running. 
@@ -28,6 +32,7 @@ Dynamic Memory Allocation: Memory is allocated at runtime, i.e., while the progr
 
 Arrays of pointers-
 A pointer array is a homogeneous collection of indexed pointer variables that are references to a memory location. It is generally used in C Programming when we want to point at multiple memory locations of a similar data type in our C program.
+<br>
 
 ### Explain the memory representation of two- dimensional arrays with the help of examples.
 Two-dimensional arrays are like a grid or a table with rows and columns. Think of it as a spreadsheet where you store information in different cells arranged in rows and columns.
@@ -35,6 +40,8 @@ Two-dimensional arrays are like a grid or a table with rows and columns. Think o
 how we store and access these grids in memory can vary:
 Row-major order: This means we store all elements of a row together, one row after the other. If you're using languages like C or C++, this is how they do it. For example, if you have a small grid with numbers from 1 to 6 arranged in 3 rows and 2 columns, it's stored as 1, 2, 3, 4, 5, 6 in memory, going row by row.
 Column-major order: Here, we store all elements of a column together, one column after the other. Some languages like Fortran use this approach. Using the same grid example, it would be stored as 1, 3, 5, 2, 4, 6 in memory, going column by column.
+<br>
+
 ```c
 #include <stdio.h>
 
@@ -44,6 +51,7 @@ int main() {
     return 0;
 }
 ```
+<br>
 
 ### Draw a linked list and vector representation of the following sparse matrix.
 Linked List Representation:
@@ -55,6 +63,7 @@ Vector Representation:
 We can use a vector to store a tuple of (row, column, value) for each non-zero element in the matrix.
 Vector:
 [(1, 2, 12), (2, 2, 11), (3, 1, 9)]
+<br>
 
 
 ### Explain the application areas of the array with a suitable example.
@@ -78,6 +87,7 @@ Sorting algorithms like: Quick sort, Merge sort, bubble sort, etc
 Searching algorithms like LS, BS, etc
 Dynamic programming: fibonacci series
 Graph algo like: BFS, DFS
+<br>
 
 ### Write an algorithm for matrix operations such as the addition of two matrices, multiplication, subtraction, and transpose.
 Algorithm: Addition
@@ -116,6 +126,7 @@ Steps:
 2. For each element A^T[i][j]:
      a. Set A^T[i][j] to A[j][i].
 3. Print or return the transposed matrix A^T.
+<br>
 
 ## Determine the formula to find the address location of an element in three-dimensional arrays, suppose each element takes four bytes of space and elements are stored in row-major order.
 Row-major order storage means that elements are stored in memory row by row. For a 3D array, this implies that elements are stored one full 2D array after another. Within each 2D array, rows are stored one after another, and within each row, elements are stored sequentially.
@@ -132,6 +143,7 @@ Total offset = offset till the beginning of 2d array + offset after the 2d array
 Total offset = i*y*z + (j*z + k)
 Therefore,
 		 A=B+W×((I×Y×Z)+(j×Z)+k)
+<br>
 
 ### Write and explain the algorithm to find the 7th smallest element in an array.
 Algorithm:-
@@ -140,6 +152,7 @@ Algorithm:-
 	Step 2: Check if the array has at least 7 elements. If n < 7, then it's not possible to find the 7th smallest element, so you should return an error or a message indicating the problem.
 	Step 3: If the array has 7 or more elements, the 7th smallest element is now at the 6th index of the sorted array
 	Step 4: Return the element at the 6th index of the sorted array.
+<br>
 
 <h3> Let A[1 : : : n] be an array of n distinct numbers. If i < j and A[i] > A[j], then the pair (i, j) is called an inversion of A. 
 List the five inversions of the array < 2; 3; 8; 6; 1 >.What array with elements from the set {1, 2,..........., n} has the most inversions? How many does it have?Give an algorithm that determines the number of inversions in any permutation of n elements in O(n log n) time. (Hint: Modify a known sorting algorithm). </h3>
