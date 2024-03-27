@@ -44,4 +44,17 @@ idea: place each element
 # Quick Sort 
 1. Start from first element and choose it as a pivot
 2. l = 0, r = n-1 and pos(pos of pivot) = 0
-3. from r to pos: 
+3. from r to pos: (r--)
+    if(elem.pos > elem.r):
+    swap
+    pos = r
+    r++
+    l++
+4. from l to pos: (l++)
+    if(elem.pos < elem.l)
+    swap
+    pos = l
+    l--
+    r--
+5. repeat until base case(r-l <= 1)
+
