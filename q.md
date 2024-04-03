@@ -30,3 +30,6 @@ quicksort is proved by master theorem.
 basic prob? -> workshop
 bayes theorem and all
  
+# 3rd april
+Diff between sequence and array
+create a program for binary tree, binary search tree

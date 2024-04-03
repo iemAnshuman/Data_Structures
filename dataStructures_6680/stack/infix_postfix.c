@@ -3,6 +3,7 @@
 
 #define MAX 100
 
+
 struct Stack {
     int top;
     char arr[MAX];
@@ -106,7 +107,7 @@ int main() {
     char infix[MAX], postfix[MAX];
 
     printf("Enter infix expression: ");
-    fflush(stdin);
+    //fflush(stdin);
     fgets(infix, MAX, stdin);
 
     infixToPostfix(infix, postfix);
