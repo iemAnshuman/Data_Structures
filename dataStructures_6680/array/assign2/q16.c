@@ -1,3 +1,11 @@
+/*
+Q. 16. You have a row of binary digits arranged randomly. 
+Arrange them in such an order that all 0’s precede all 1’s or vice versa. 
+The only constraint in arranging them is that you are allowed to 
+interchange the positions of binary digits if they are not similar. 
+Write a program in C using the pointer to solve the problem.
+*/
+
 #include <stdio.h>
 
 // Function to rearrange the binary digits
@@ -26,19 +34,25 @@ void rearrange(int *arr, int size) {
 }
 
 int main() {
-    int arr[8] = {1, 1, 0, 1, 0, 1, 0, 0}; 
-    int size = sizeof(arr)/sizeof(arr[0]);
+    int n;
+    printf("Enter size: ");
+    scanf("%d",&n);
+
+    int arr[n]; 
+    for(int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
     
     printf("Original array: ");
-    for(int i = 0; i < size; i++) {
+    for(int i = 0; i < n; i++) {
         printf("%d ", arr[i]);
     }
     printf("\n");
     
-    rearrange(arr, size);
+    rearrange(arr, n);
     
     printf("Rearranged array: ");
-    for(int i = 0; i < size; i++) {
+    for(int i = 0; i < n; i++) {
         printf("%d ", arr[i]);
     }
     printf("\n");

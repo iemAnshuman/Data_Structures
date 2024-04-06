@@ -1,3 +1,8 @@
+/*
+Create an array of 10 elements. Take 10 elements in the array 
+pass them into a function that prints them in reverse order.
+*/
+
 #include <stdio.h>
 
 // Function to print array in reverse order

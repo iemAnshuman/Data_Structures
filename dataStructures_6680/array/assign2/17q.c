@@ -1,4 +1,29 @@
 /*
+Q. 17. Game of Chocolates: As we all know small children love chocolates so 
+one day their class teacher brought N chocolates where the cost of each 
+chocolate is written on the cover of chocolate itself.
+He asked them to do play a game. Game is described as follows-
+They have to select a pair of adjacent chocolates and take out the expensive
+chocolate by paying for the cheaper chocolate. The game ends when there is
+only one chocolate left. He asked them to find out the minimum cost in which 
+they can complete the game?
+
+INPUT
+The first line of the input contains T denoting the total number of games.
+The first line of each game contains N denoting the total number of chocolates 
+their class teacher initially brought for them. The next line contains N 
+space-separated positive integers denoting the cost of chocolates.
+
+OUTPUT
+For each game output the minimum cost in which children can complete the game.
+
+CONSTRAINTS
+1 <= T <= 10
+2 <= N <= 100000
+1 <= Ai <= 100000
+*/
+
+/*
 Explanation:-
 Here we have to find the minimum cost by:-
 0) Create a var = 0

@@ -1,3 +1,15 @@
+/*
+Q. 24. The sum in a Range: You are given an array of N positive integers and Q number of queries. In each query you are given two integers L and R find the sum of elements between L and R both inclusive.
+
+Input The first line contains two integers N and Q denoting the number of elements and number of queries respectively. The next line contains N positive integers denoting the array elements. Each of the next Q lines contains two space-separated positive integers L and R.
+
+Output For each query print the sum of elements between L and R inclusive in a new line.
+
+Constraints 1 <= N <= 10^5 1 <= Q <= 10^5 1 <= A[i] <= 10^9 1 <= L <= R <= N
+
+
+*/
+
 #include <stdio.h>
 
 void calcPS(int a[], int ps[], int n) {

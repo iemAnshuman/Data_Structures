@@ -1,3 +1,7 @@
+/*
+Write a program to show to display the contents of a pointer using arrays of pointers
+*/
+
 #include <stdio.h>
 
 int main() {
@@ -9,7 +13,7 @@ int main() {
         p[i] = &a[i];
 
     for(i = 0; i < 5; i++)
-        printf("%d ", *p[i]);
+        printf("%d %p\n", *p[i], p[i]);
 
     return 0;
 }

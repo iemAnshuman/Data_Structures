@@ -1,3 +1,13 @@
+/*
+Q. 25. Buy Maximum Items: You are given N items where the cost of the ith item is Ci and you have a total budget B find the maximum number of items you can buy within that budget.
+
+Input The first line of the input contains N denoting the total number of items and B denoting the budget. The next line contains N space-separated positive integers denoting the cost of the ith item.
+
+Output Print the maximum number of items you can buy within the given budget.
+
+Constraints 1 <= N <= 10^5 1 <= B <= 10^15 1 <= A[i] <= 10^9
+*/
+
 #include <stdio.h>
 
 // Function to sort the array
@@ -17,16 +27,16 @@ void sort(int a[], int n) {
 // Function to calculate the maximum number of items
 int maxI(int c[], int n, long long b) {
     sort(c, n); // Sorting the array
-    int cnt = 0;
+    int count = 0;
     for(int i = 0; i < n; i++) {
         if(b >= c[i]) {
             b -= c[i]; // Subtracting the cost from the budget
-            cnt++; // Increasing the count of items
+            count++; // Increasing the count of items
         } else {
             break; // Stop if the budget can't cover the next item
         }
     }
-    return cnt;
+    return count;
 }
 
 int main() {

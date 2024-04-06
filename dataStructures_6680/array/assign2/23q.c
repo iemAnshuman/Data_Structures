@@ -1,3 +1,13 @@
+/*
+Q. 23. Minimum Sum: You are given an array of N positive elements find the minimum value of A[i] + A[j] such that i < j.
+
+Input The first line contains N denoting the total number of elements. The next line contains N integers denoting the array elements.
+
+Output Print the minimum value of A[i] + A[j] such that i < j.
+
+Constraints 2 <= N <= 10^5 1 <= A[i] <= 10^9
+*/
+
 #include <stdio.h>
 #include <limits.h> // For INT_MAX
 

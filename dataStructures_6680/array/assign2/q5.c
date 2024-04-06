@@ -4,7 +4,7 @@
 #define N 100
 
 int main() {
-    int a[N][N], t[N][N], n, i, j, f = 1;
+    int a[N][N], t[N][N], n, i, j, f = 0;
     // size input
     scanf("%d", &n);
 
