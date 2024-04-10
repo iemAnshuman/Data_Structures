@@ -52,6 +52,12 @@
 
 <br>
 
+## Applications of trees:-
+* File System: efficient navigation and organisation of files
+* Huffman coding: data compression technique that involves constructing a binary tree where the 
+leaves of tree represent the characters and their frequency of occurance.
+* B-trees and other tree structures are used in database indexing to efficiently search, store and retrieve data. 
+
 ## Types of trees (on the basis of children)
 1. Binary Trees
 2. Ternary trees
@@ -74,7 +80,7 @@
 
 <br>
 
-# Types of trees 
+# Types of trees (lecture)
 1. General Trees: one root with no degree restrictions (?)
 2. Forest Trees: disjoint union of trees. (undirected graph?)
 3. Binary Trees
