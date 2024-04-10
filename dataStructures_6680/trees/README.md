@@ -50,6 +50,27 @@
 
 * Intermediate node: nodes between two nodes
 
+* Balanced and unbalanced: In a balanced tree, the heights of subtrees of any node differ by at most one level.
+```css
+Balanced:-
+   A
+  / \
+ B   C
+/ \ / \
+D  E F  G
+```
+
+```css
+Unbalanced:-
+      A
+     \
+      B
+       \
+        C
+         \
+          D
+
+```
 <br>
 
 ## Applications of trees:-
