@@ -1,6 +1,7 @@
 # Binary Trees
 - root exits
 - two degree 
+- can be both balanced and unbalanced.
 <br>
 
 ### Implementation
