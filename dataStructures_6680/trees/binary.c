@@ -1,12 +1,19 @@
+/*
+Problems:-
+after Dth step it is runnning both B and C 
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
+// structure for node for tree ds
 struct Node{
     int data;
     struct Node* left;
     struct Node* right;
 };
 
+// function to create node for the given data
 struct Node* createNode(int ndata)
 {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
@@ -20,31 +27,64 @@ struct Node* createNode(int ndata)
     return newNode;
 }
 
+// insert the data in the tree
 void insert(struct Node** root,  int ndata)
 {
     struct Node* temp = *root;
     // struct Node* left = temp;
-    if(temp == NULL)
+    if(*root == NULL)
     {
-        temp = createNode(ndata);
+        *root = createNode(ndata);
+        printf("A\n");
         return;
     }
     else 
     {
         while(1)
         {
-            if(temp->left != NULL)
+            if(temp->left == NULL)
             {
                 temp->left = createNode(ndata);
+                printf("B\n");
                 return;
             }
-            else if(temp->right != NULL)
+            else if(temp->right == NULL)
             {
                 temp->right = createNode(ndata);
+                printf("C\n");
                 return;
             }
-            // do something here
+            printf("D\n");
+            printf("left(0) or right(1)?\n");
+            int choice;
+            scanf("%d",&choice);
+            switch (choice)
+            {
+                case 0:
+                    temp = temp->left;
+                    insert(&temp, ndata);
+                    break;
+                case 1:
+                    temp = temp->right;
+                    insert(&temp, ndata);
+                    break;
+                default:
+                    printf("Invalid choice!\n");
+                    return;
+            }   
         }
+    }
+}
+
+// traversing -> pre order
+void preorder(struct Node* root)
+{
+    if(root != NULL)
+    {
+        printf("X\n");
+        printf("%d ",root->data);
+        preorder(root->left);
+        preorder(root->right);
     }
 }
 
@@ -56,7 +96,7 @@ int main()
     printf("Menu:\n");
     printf("0. Exit\n");
     printf("1. Insertion\n");
-
+    printf("2. preorder\n");
     printf("Enter your choice: ");
     int choice;
     //printf("The value of choice is: %d\n",choice);
@@ -72,9 +112,15 @@ int main()
             int ndata;
             scanf("%d",&ndata);
             insert(&root, ndata);
+            break;
         }
-    default:
-        break;
+        case 2:
+            preorder(root);
+            printf("\n");
+            break;
+        default:
+            break;
     }
     }
+    return 0;
 }
