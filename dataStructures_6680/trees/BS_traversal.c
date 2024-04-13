@@ -22,6 +22,22 @@ struct Node* createNode(int ndata)
     return newNode;
 }
 
+struct Node* smallest(struct Node* root)
+{
+    if(root->left == NULL || root == NULL)
+    {
+        return root;
+    }
+    smallest(root->left);
+}
+
+
+void simple(struct Node* root)
+{
+    // not simple after all
+    return;
+}
+
 // with recursion
 void preorder(struct Node* root)
 {
@@ -40,6 +56,7 @@ void preorder2(struct Node* root)
     
 }
 */
+
 // with recursion
 void inorder(struct Node* root)
 {
@@ -62,16 +79,29 @@ void postorder(struct Node* root)
     }
 }
 
+// create a function that can do the same without using double pointers
 void insert(struct Node** root, int data)
 {
     struct Node* newNode = createNode(data);
+    struct Node* temp = *root;
+    struct Node* parent = NULL;
     if (*root == NULL)
     {
         *root = newNode;
+
+        // observation:-
+
+        //printf("%d\n",temp->left->data);
+        //temp = temp->left;
+        //printf("%d\n",temp->left->data);
+        /*
+        both are giving segmentation fault 
+        so we don't have again specify:
+        root->left = NULL
+        and root->right = NULL
+        */
         return;
     }
-    struct Node* temp = *root;
-    struct Node* parent = NULL;
     while (temp != NULL)
     {
         parent = temp;
@@ -101,6 +131,8 @@ int main()
     printf("2. Pre-order\n");
     printf("3. In-order\n");
     printf("4. Post order\n");
+    printf("5. Simple printing\n");
+    printf("6. Smallest number\n");
     printf("Enter your choice: ");
     int choice;
     //printf("The value of choice is: %d\n",choice);
@@ -129,6 +161,13 @@ int main()
         case 4: 
             postorder(root);
             printf("\n");
+            break;
+        case 5: 
+            simple(root);
+            printf("\n");
+            break;
+        case 6:
+            smallest(root);
             break;
         default:
             printf("Invalid choice, please try again.\n");

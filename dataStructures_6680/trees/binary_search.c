@@ -58,7 +58,6 @@ int main()
     printf("Menu:\n");
     printf("0. Exit\n");
     printf("1. Insertion\n");
-
     printf("Enter your choice: ");
     int choice;
     //printf("The value of choice is: %d\n",choice);
@@ -74,6 +73,7 @@ int main()
             int ndata;
             scanf("%d",&ndata);
             insert(&root, ndata);
+            break;
         }
     default:
         break;
