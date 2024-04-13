@@ -24,31 +24,31 @@ struct Node* createNode(int ndata)
 
 void insert(struct Node** root, int data)
 {
-    if(*root == NULL)
+    struct Node* newNode = createNode(data);
+    struct Node* temp = *root;
+    struct Node* parent = NULL;
+    if (*root == NULL)
     {
-        *root = createNode(data);
+        *root = newNode;
         return;
     }
-    struct Node* temp = *root;
-    while(1)
+    while (temp != NULL)
     {
-        if(temp == NULL)
-        {
-            temp = createNode(data);
-            return;
-        }
-        else if(data < temp->data)
-        {
+        parent = temp;
+        if (data < temp->data)
             temp = temp->left;
-            return;
-        }
-        else if(data > temp->data)
-        {
-            temp = temp -> right;
-            return;
-        }
+        else if (data > temp->data)
+            temp = temp->right;
+        else
+            return; 
     }
+
+    if (data < parent->data)
+        parent->left = newNode;
+    else
+        parent->right = newNode;
 }
+
 
 int main()
 {
