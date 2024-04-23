@@ -1,5 +1,4 @@
 #include <stdio.h>
-// #include <stdlib.h>
 #define MAX_SIZE 100
 
 // created a structure for stack
@@ -38,6 +37,7 @@ void print(struct stack *s) {
   for (int i = 0; i <= s->top; i++) {
     printf("%d ", s->items[i]);
   }
+  printf("\n");
 }
 
 void push(struct stack *s, int data) {
@@ -55,7 +55,7 @@ void peek(struct stack *s) {
     printf("Underflow\n");
     return;
   }
-  printf("%d ", s->items[s->top]);
+  printf("%d\n", s->items[s->top]);
 }
 
 int pop(struct stack *s) {
@@ -64,7 +64,7 @@ int pop(struct stack *s) {
     return -1;
     // to do: debug
   }
-  printf("%d ", s->items[s->top]);
+  printf("%d\n", s->items[s->top]);
   (s->top)--;
   return s->items[s->top];
 }
