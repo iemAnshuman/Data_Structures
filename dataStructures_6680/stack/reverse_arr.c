@@ -32,6 +32,7 @@ void print(struct stack *s) {
   for (int i = 0; i <= s->top; i++) {
     printf("%d ", s->items[i]);
   }
+  printf("\n");
 }
 
 void push(struct stack *s, int data) {
@@ -42,6 +43,32 @@ void push(struct stack *s, int data) {
   (s->top)++;
   s->items[s->top] = data;
   return;
+}
+
+int pop(struct stack *s)
+{
+  if(empty(s))
+  {
+    printf("Underflow\n");
+    return __INT_MAX__;
+  }
+  int temp = s->items[s->top];
+  s->top--;
+  return temp;
+}
+
+struct stack reverse(struct stack *s)
+{
+  struct stack temp;
+  // initialise temp
+  insti_stack(&temp);
+
+  while(!empty(s))
+  {
+    push(&temp, pop(s));
+  }
+
+  return temp;
 }
 
 int main()
@@ -57,6 +84,10 @@ int main()
         push(&s, x);
     }
     printf("The original stack is: ");
+    print(&s);
+
+    s = reverse(&s);
+    printf("Reversed array is: ");
     print(&s);
     return 0;
 }
