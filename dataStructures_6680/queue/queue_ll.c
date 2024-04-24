@@ -77,22 +77,57 @@ void display(Queue* q) {
     }
 }
 
+int peek(Queue* q)
+{
+    if(isEmpty(q))
+    {
+        printf("Queue is empty.\n");
+        return __INT_MAX__;
+    }
+    printf("%d\n",q->front->data);
+    return q->front->data;
+}
+
 // Main function to demonstrate queue operations
 int main() {
     Queue q;
     initQueue(&q);
 
-    enqueue(&q, 10);
-    enqueue(&q, 20);
-    enqueue(&q, 30);
+    while(1)
+    {
+    printf("Menu:\n");
+    printf("0. Exit\n");
+    printf("1. Enqueue\n");
+    printf("2. Dequeue\n");
+    printf("3. Display\n");
+    printf("4. peek\n");
 
-    printf("Queue: ");
-    display(&q);
+    int choice;
+    printf("Enter choice: ");
+    scanf("%d",&choice);
 
-    printf("%d dequeued from queue\n", dequeue(&q));
-
-    printf("Queue after dequeue: ");
-    display(&q);
-
+    switch (choice)
+    {
+    case 0:
+        return 0;
+    case 1:
+        printf("Enter data: ");
+        int ndata;
+        scanf("%d",&ndata);
+        enqueue(&q,ndata);
+        break;
+    case 2:
+        dequeue(&q);
+        break;
+    case 3:
+        display(&q);
+        break;
+    case 4:
+        peek(&q);
+        break;
+    default:
+        break;
+    }
+    }
     return 0;
 }

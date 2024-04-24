@@ -26,7 +26,7 @@ int isEmpty(struct Stack* stack) {
 void push(struct Stack* stack, int data) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     if (newNode == NULL) {
-        printf("Heap is full. Cannot push.\n");
+        printf("Stack is full. Cannot push.\n");
         return;
     }
     newNode->data = data;
@@ -53,6 +53,7 @@ int peek(struct Stack* stack) {
         printf("Stack is empty.\n");
         return -1; // Return an error value
     }
+    printf("%d\n",stack->top->data);
     return stack->top->data;
 }
 
@@ -71,18 +72,41 @@ int main() {
     struct Stack stack;
     initStack(&stack);
 
-    push(&stack, 10);
-    push(&stack, 20);
-    push(&stack, 30);
-    
-    printf("Stack elements after pushing 10, 20, 30: ");
-    display(&stack);
+    while(1)
+    {
+    printf("Menu:-\n");
+    printf("0. Exit\n");
+    printf("1. push\n");
+    printf("2. pop\n");
+    printf("3. peek\n");
+    printf("4. Display\n");
 
-    printf("Element popped from stack: %d\n", pop(&stack));
-    printf("Stack elements after popping: ");
-    display(&stack);
+    printf("Enter choice: ");
+    int choice;
+    scanf("%d",&choice);
 
-    printf("Element on top of the stack: %d\n", peek(&stack));
-
+    switch(choice)
+    {
+        case 0:
+            return 0;
+        case 1:
+        {
+            printf("Enter data: ");
+            int ndata;
+            scanf("%d",&ndata);
+            push(&stack,ndata);
+            break;
+        }
+        case 2: 
+            pop(&stack);
+            break;
+        case 3:
+            peek(&stack);
+            break;
+        case 4:
+            display(&stack);
+            break;
+    }
+    }
     return 0;
 }

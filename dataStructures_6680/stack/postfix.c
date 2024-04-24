@@ -63,9 +63,12 @@ void evaluate(char* postfix) {
                 num = num * 10 + (postfix[i] - '0');
                 i++;
             }
+            //printf("Pushing %d\n",num);
             push(&s, num);
         } else if (postfix[i] == '+' || postfix[i] == '-' || postfix[i] == '*' || postfix[i] == '/' || postfix[i] == '%') {
+            //printf("%d->operator\n",postfix[i]);
             op_encounter(&s, postfix[i]);
+            //printf("topmost: %d\n",s.item[s.top]);
             i++;
         } else {
             i++; // Skip non-numeric and non-operator characters

@@ -1,95 +1,128 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct Node {
-    int data;
-    struct Node* next;
-} Node;
+#define SIZE 5
 
-typedef struct CircularQueue {
-    Node* front;
-    Node* rear;
+// Define the Circular Queue structure
+typedef struct {
+    int items[SIZE];
+    int front, rear;
 } CircularQueue;
 
-void init(CircularQueue* cq) {
-    cq->front = cq->rear = NULL;
+// Initialize the queue
+void initQueue(CircularQueue *q) {
+    q->front = -1;
+    q->rear = -1;
 }
 
-Node* create_node(int data) {
-    Node* newNode = (Node*)malloc(sizeof(Node));
-    if (!newNode) {
-        printf("Memory allocation failed.\n");
-        exit(1);
-    }
-    newNode->data = data;
-    newNode->next = NULL;
-    return newNode;
+// Check if the queue is full
+int isFull(CircularQueue *q) {
+    return (q->front == (q->rear + 1) % SIZE);
 }
 
-int isEmpty(CircularQueue* cq) {
-    return cq->front == NULL;
+// Check if the queue is empty
+int isEmpty(CircularQueue *q) {
+    return (q->front == -1);
 }
 
-void enqueue(CircularQueue* cq, int data) {
-    Node* newNode = create_node(data);
-    if (isEmpty(cq)) {
-        cq->front = cq->rear = newNode;
-        newNode->next = cq->front; // Making it circular
+// Adding an element to the queue
+void enqueue(CircularQueue *q, int element) {
+    if (isFull(q)) {
+        printf("\nQueue is full!!\n");
     } else {
-        cq->rear->next = newNode;
-        cq->rear = newNode;
-        cq->rear->next = cq->front; // Maintaining circularity
+        if (q->front == -1) q->front = 0;
+        q->rear = (q->rear + 1) % SIZE;
+        q->items[q->rear] = element;
+        printf("\nInserted -> %d\n", element);
     }
-    printf("%d enqueued to queue\n", data);
 }
 
-int dequeue(CircularQueue* cq) {
-    if (isEmpty(cq)) {
-        printf("Queue is empty. Cannot dequeue.\n");
-        return -1;
-    }
-    int data = cq->front->data;
-    if (cq->front == cq->rear) { // Only one element
-        free(cq->front);
-        cq->front = cq->rear = NULL;
+// Removing an element from the queue
+int dequeue(CircularQueue *q) {
+    int element;
+    if (isEmpty(q)) {
+        printf("\nQueue is empty !!\n");
+        return (-1);
     } else {
-        Node* temp = cq->front;
-        cq->front = cq->front->next;
-        cq->rear->next = cq->front; // Maintaining circularity
-        free(temp);
+        element = q->items[q->front];
+        if (q->front == q->rear) {
+            q->front = -1;
+            q->rear = -1;
+        } else {
+            q->front = (q->front + 1) % SIZE;
+        }
+        printf("\nDeleted element -> %d\n", element);
+        return element;
     }
-    return data;
 }
 
-void display(CircularQueue* cq) {
-    if (isEmpty(cq)) {
-        printf("Queue is empty.\n");
-        return;
+// Function to print the queue
+void display(CircularQueue *q) {
+    int i;
+    if (isEmpty(q))
+        printf("\nEmpty Queue\n");
+    else {
+        printf("\nFront -> %d ", q->front);
+        printf("\nItems -> ");
+        for (i = q->front; i != q->rear; i = (i + 1) % SIZE) {
+            printf("%d ", q->items[i]);
+        }
+        printf("%d ", q->items[i]);
+        printf("\nRear -> %d \n", q->rear);
     }
-    printf("Queue: ");
-    Node* temp = cq->front;
-    do {
-        printf("%d ", temp->data);
-        temp = temp->next;
-    } while (temp != cq->front);
-    printf("\n");
+}
+
+// Display the menu and get the user's choice
+int getMenuChoice() {
+    int choice;
+    printf("\nMenu\n");
+    printf("1. Enqueue\n");
+    printf("2. Dequeue\n");
+    printf("3. Display Queue\n");
+    printf("4. Exit\n");
+    printf("Enter your choice: ");
+    scanf("%d", &choice);
+    return choice;
 }
 
 int main() {
-    CircularQueue cq;
-    init(&cq);
+    CircularQueue q;
+    int choice, value;
 
-    enqueue(&cq, 1);
-    enqueue(&cq, 2);
-    enqueue(&cq, 3);
+    initQueue(&q);
 
-    printf("Initial queue:\n");
-    display(&cq);
+    while (1) {
+        choice = getMenuChoice();
 
-    printf("%d dequeued from queue\n", dequeue(&cq));
-
-    printf("Queue after one dequeue:\n");
-    display(&cq);
+        switch (choice) {
+            case 1:
+                if (isFull(&q)) {
+                    printf("\nCannot enqueue: Queue is full!\n");
+                } else {
+                    printf("Enter the value to enqueue: ");
+                    scanf("%d", &value);
+                    enqueue(&q, value);
+                }
+                break;
+            case 2:
+                if (isEmpty(&q)) {
+                    printf("\nCannot dequeue: Queue is empty!\n");
+                } else {
+                    value = dequeue(&q);
+                    printf("Dequeued: %d\n", value);
+                }
+                break;
+            case 3:
+                display(&q);
+                break;
+            case 4:
+                printf("Exiting...\n");
+                exit(0);
+                break;
+            default:
+                printf("Invalid choice, please try again.\n");
+        }
+    }
 
     return 0;
 }

@@ -73,28 +73,45 @@ void display(CircularQueue *q) {
     }
 }
 
+void menu() {
+    printf("\n1. Enqueue");
+    printf("\n2. Dequeue ");
+    printf("\n3. Display ");
+    printf("\n4. Exit");
+    printf("\nEnter your choice: ");
+}
+
 int main() {
     CircularQueue q;
     initQueue(&q);
+    int choice, value;
 
-    enqueue(&q, 1);
-    enqueue(&q, 2);
-    enqueue(&q, 3);
-    enqueue(&q, 4);
-    enqueue(&q, 5);
-    // Trying to add elements more than the capacity to show Queue is full
-    enqueue(&q, 6);
+    while(1) {
+        menu();
+        scanf("%d", &choice);
 
-    display(&q);
-
-    int elem = dequeue(&q);
-    if (elem != -1)
-        printf("\nDequeued : %d\n", elem);
-
-    display(&q);
-
-    enqueue(&q, 7);
-    display(&q);
+        switch(choice) {
+            case 1:
+                printf("Enter the value to enqueue: ");
+                scanf("%d", &value);
+                enqueue(&q, value);
+                break;
+            case 2:
+                value = dequeue(&q);
+                if (value != -1) {
+                    printf("\nDequeued: %d\n", value);
+                }
+                break;
+            case 3:
+                display(&q);
+                break;
+            case 4:
+                printf("Exiting program.\n");
+                exit(0);
+            default:
+                printf("Invalid choice, please try again.\n");
+        }
+    }
 
     return 0;
 }
