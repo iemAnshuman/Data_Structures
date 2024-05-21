@@ -21,6 +21,12 @@ struct node
 
 ### repersentation
 1. Linked 
-2. Sequential
+2. Sequential(array)
 
 
+
+### Types
+1. Full binary tree: either a node is leaf 
+
+### Properties
+* There are at most 2**l nodes at level...

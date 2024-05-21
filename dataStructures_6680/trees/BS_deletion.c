@@ -26,53 +26,85 @@ void preorder(struct Node* root)
     }
 }
 
-
-void insert(struct Node** root, int data)
+void insert(struct Node** root, int ndata)
 {
+    struct Node* temp = *root;
+    struct Node* parent = NULL;
     if(*root == NULL)
     {
-        *root = createNode(data);
+        *root = createNode(ndata);
         return;
     }
-    struct Node* temp = *root;
-    while(1)
+    while(temp != NULL)
     {
-        if(temp == NULL)
-        {
-            temp = createNode(data);
-            return;
-        }
-        else if(data < temp->data)
+        parent = temp;
+        if(temp->data > ndata)
         {
             temp = temp->left;
-            return;
         }
-        else if(data > temp->data)
-        {
-            temp = temp -> right;
-            return;
-        }
-    }
-}
-
-void delete(int data, struct Node** root)
-{
-    struct Node* temp = *root;
-    while(temp->data != data)
-    {
-        if(temp->data > data)
+        else if(temp->data < ndata)
         {
             temp = temp->right;
         }
         else
         {
-            temp = temp->left;
+            return;
         }
     }
 
-    if(temp->left == NULL && temp->right == NULL)
+    if(parent->data > ndata)
     {
-        free(temp);
+        parent->left = createNode(ndata);
+    }
+    else 
+    {
+        parent->right = createNode(ndata);
+    }
+    
+}
+
+void delete(int data, struct Node** root)
+{
+    struct Node* temp = *root;  
+    if(temp->data > data)
+    {
+        delete(data, &(temp->left));
+        return;
+    }
+    else if(temp->data < data)
+    {
+        delete(data, &(temp->right));
+        return;
+    }
+    else
+    {
+        // both children doesn't exist
+        if(temp->left == NULL && temp->right == NULL)
+        {
+            free(temp);
+            return;
+        }
+        else if(temp->left == NULL) // if left doesn't exists
+        {
+            free(temp);
+            return;
+        }
+        else if(temp->right == NULL) // if right doesn't exists
+        {
+            free(temp);
+            return;
+        }
+        else // both exists
+        {
+            temp = temp->right;
+            while(temp->left != NULL)
+            {
+                temp = temp->left;
+            }
+            free(temp);
+            return;
+        }
+
     }
 }
 
@@ -83,8 +115,8 @@ int main()
     {
     printf("Menu:\n");
     printf("0. Exit\n");
-    printf("1. Insertion\n");
-    printf("2. Deletion\n");
+    printf("1. Insertion using double pointer\n");
+    printf("2. Deletion using double pointer\n");
     printf("3. Pre-order\n");
     printf("Enter your choice: ");
     int choice;
